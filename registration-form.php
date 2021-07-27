@@ -137,30 +137,45 @@
 
             if ($flag == true)
             {
-                $firstName = test_input($_POST["fname"]);
-                $lastName = test_input($_POST["lname"]);
-                $gender = test_input($_POST["gender"]);
-                $dob = test_input($_POST["dob"]);
-                $religion = test_input($_POST["religion"]);
-                $email = test_input($_POST["email"]);
-                $presentAddress = test_input($_POST["presentAddress"]);
-                $permanentAddress = test_input($_POST["permanentAddress"]);
-                $phone = test_input($_POST["phone"]);
-                $personalLink = test_input($_POST["pwl"]);
-                $userName = test_input($_POST["uname"]);
-                $password = test_input($_POST["password"]);
+                if (strlen($userName) > 10)
+                {
+                    $userNameErr = "Username max size is 10!";
+                    $flag = false;
+                }
+                if (strlen($password) > 5)
+                {
+                    $passwordErr = "Password max size is 5!";
+                    $flag = false;
+                }
+                if ($flag == true)
+                {
+                    $firstName = test_input($_POST["fname"]);
+                    $lastName = test_input($_POST["lname"]);
+                    $gender = test_input($_POST["gender"]);
+                    $dob = test_input($_POST["dob"]);
+                    $religion = test_input($_POST["religion"]);
+                    $email = test_input($_POST["email"]);
+                    $presentAddress = test_input($_POST["presentAddress"]);
+                    $permanentAddress = test_input($_POST["permanentAddress"]);
+                    $phone = test_input($_POST["phone"]);
+                    $personalLink = test_input($_POST["pwl"]);
+                    $userName = test_input($_POST["uname"]);
+                    $password = test_input($_POST["password"]);
 
-                $response = register($firstName, $lastName, $gender, $dob, $religion, $presentAddress, 
-                $permanentAddress, $phone, $email, $personalLink, $userName, $password);
+                    $response = register($firstName, $lastName, $gender, $dob, $religion, $presentAddress, 
+                    $permanentAddress, $phone, $email, $personalLink, $userName, $password);
+                    
+                    if ($response)
+                    {
+                        $sMessage = "Successfully Saved!";
+                    }
+                    else
+                    {
+                        $rMessage = "Error While Saving!";
+                    }
+                }
+
                 
-                if ($response)
-                {
-                    $sMessage = "Successfully Saved!";
-                }
-                else
-                {
-                    $rMessage = "Error While Saving!";
-                }
             }
 
         }
